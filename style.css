@@ -1,0 +1,72 @@
+html,
+body {
+  /* Functionality */
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* To stop X overflow from creating a horizontal scroll bar */
+  overflow-y: hidden; /* To stop Y overflow from creating a vertical scroll bar */
+
+  /* Colouring Style */
+  --text-color: white;
+  color: var(--text-color);
+  --drop-shadow-color: black;
+  --drop-shadow-displacement: 2px 2px;
+
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Drop Shadow for readability */
+.drop-shadow-2px {
+  filter: drop-shadow(var(--drop-shadow-color) var(--drop-shadow-displacement));
+}
+
+/* Disable pointer events on the element*/
+.no-pointer-events {
+  pointer-events: none;
+}
+
+.debug-color {
+  background-color: grey;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  height: max-content;
+
+  border: 5px solid black;
+  background-color: grey;
+}
+
+nav {
+  height: 25px;
+  margin-top: -16px;
+  font-weight: bold;
+}
+
+nav ul {
+  width: 100%;
+  height: inherit;
+  margin-left: -35px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav ul li {
+  width: max-content;
+  list-style-type: none;
+}
+
+nav a {
+  width: max-content;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
