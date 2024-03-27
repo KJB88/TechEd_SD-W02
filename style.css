@@ -16,7 +16,7 @@ body {
   --drop-shadow-displacement: 2px 2px;
 
   --grid-gappage: 5px;
-
+  --grid-outer-gap: 10px;
   /* Formatting */
   margin: 0;
   font-family: sans-serif;
@@ -51,18 +51,31 @@ body {
 }
 
 /* HEADER */
+
 header {
   width: 100%;
-  height: max-content;
+  height: 5vh;
 
-  border: 5px solid black;
+  border-bottom: 5px solid black;
   box-sizing: border-box;
   background-color: grey;
 }
 
-header button {
+header h1 {
+  margin: 0;
+  font-weight: 700rem;
+  height: min-content;
+}
+
+#reset-data-btn {
+  width: 100px;
+  height: 25px;
+
+  margin-right: 5px;
   border-radius: 0;
   background-color: var(--element-bg-color);
+
+  text-wrap: nowrap;
 }
 
 header button div {
@@ -71,15 +84,24 @@ header button div {
 
 /* Nav */
 nav {
-  height: 25px;
-  margin-top: -16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 35px;
+  padding-top: 2.5px;
+
   font-weight: bold;
 }
 
 nav ul {
+  padding: 0;
+  margin: 0;
+
   width: 100%;
-  height: inherit;
-  margin-left: -35px;
+  height: 35px;
+  padding-left: var(--grid-gappage);
+
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -118,42 +140,64 @@ nav a:hover {
 .grid-wrapper {
   display: grid;
   gap: var(--grid-gappage);
-  grid-template-columns: 30% 50% 20%;
+  grid-template-columns: 35% 50% 15%;
   grid-template-rows: minmax(100px, auto);
-
-  padding-top: var(--grid-gappage);
-  padding-right: 10px;
+  box-sizing: border-box;
   z-index: 1;
 
-  height: 100vh;
+  padding: var(--grid-outer-gap);
+  padding-right: 20px;
+  height: 95vh;
 }
-
 .griditem-clicker {
   grid-column: 1;
-  grid-row: 1 / 3;
+  grid-row: 1 / 4;
   border: black solid 5px;
+  background-color: rgba(150, 0, 150, 0.5);
 }
 
 .grid-menus {
   grid-column: 2;
   grid-row: 1;
   border: black solid 5px;
+  background-color: rgba(150, 0, 150, 0.5);
 }
 
 .griditem-sandbox {
   grid-column: 2;
-  grid-row: 2 / 3;
+  grid-row: 2 / 4;
   border: black solid 5px;
+  background-color: rgba(150, 0, 150, 0.5);
 }
 
 .griditem-upgrades {
   grid-column: 3;
   grid-row: 1;
   border: black solid 5px;
+  background-color: rgba(150, 0, 150, 0.5);
 }
 
 .griditem-products {
   grid-column: 3;
-  grid-row: 2 / 3;
+  grid-row: 2 / 4;
   border: black solid 5px;
+  background-color: rgba(150, 0, 150, 0.5);
+}
+
+/* FOOTER */
+footer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: center;
+
+  background-color: transparent;
+}
+
+footer div {
+  width: max-content;
+  height: min-content;
 }
