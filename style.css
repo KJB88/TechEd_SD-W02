@@ -207,15 +207,17 @@ footer {
   position: absolute;
   bottom: 20px;
   left: 20px;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-start;
-  justify-content: center;
 
   background-color: transparent;
 }
 
 footer div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 0.15rem;
+  font-size: 32px;
   width: max-content;
   height: min-content;
 }
