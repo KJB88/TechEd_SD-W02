@@ -17,6 +17,9 @@ body {
 
   --grid-gappage: 5px;
   --grid-outer-gap: 10px;
+
+  --rgba-pink-translucent: rgba(150, 0, 150, 0.5);
+
   /* Formatting */
   margin: 0;
   font-family: sans-serif;
@@ -58,7 +61,7 @@ header {
 
   border-bottom: 5px solid black;
   box-sizing: border-box;
-  background-color: grey;
+  background-color: var(--rgba-pink-translucent);
 }
 
 header h1 {
@@ -73,7 +76,7 @@ header h1 {
 
   margin-right: 5px;
   border-radius: 0;
-  background-color: var(--element-bg-color);
+  background-color: var(--rgba-pink-translucent);
 
   text-wrap: nowrap;
 }
@@ -126,6 +129,21 @@ nav a:hover {
 }
 
 /* MAIN */
+main section {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+main section div {
+  width: min-content;
+  height: min-content;
+}
+
+main section div h2 {
+  padding: 0;
+  margin: 0;
+}
 /* Background */
 .bg {
   z-index: -1;
@@ -153,35 +171,35 @@ nav a:hover {
   grid-column: 1;
   grid-row: 1 / 4;
   border: black solid 5px;
-  background-color: rgba(150, 0, 150, 0.5);
+  background-color: var(--rgba-pink-translucent);
 }
 
 .grid-menus {
   grid-column: 2;
   grid-row: 1;
   border: black solid 5px;
-  background-color: rgba(150, 0, 150, 0.5);
+  background-color: var(--rgba-pink-translucent);
 }
 
 .griditem-sandbox {
   grid-column: 2;
   grid-row: 2 / 4;
   border: black solid 5px;
-  background-color: rgba(150, 0, 150, 0.5);
+  background-color: var(--rgba-pink-translucent);
 }
 
 .griditem-upgrades {
   grid-column: 3;
   grid-row: 1;
   border: black solid 5px;
-  background-color: rgba(150, 0, 150, 0.5);
+  background-color: var(--rgba-pink-translucent);
 }
 
 .griditem-products {
   grid-column: 3;
   grid-row: 2 / 4;
   border: black solid 5px;
-  background-color: rgba(150, 0, 150, 0.5);
+  background-color: var(--rgba-pink-translucent);
 }
 
 /* FOOTER */
