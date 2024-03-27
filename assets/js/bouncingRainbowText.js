@@ -19,7 +19,7 @@ constructTextSpans();
 
 /* HOOKS */
 setInterval(rainbowText, 100); // Rainbow randomness!
-setInterval(bounce, 175);
+setInterval(bounce, 130);
 
 /* FUNCS */
 /* Construct and cache Spans for use */
@@ -70,7 +70,7 @@ function bounce() {
     {
       top: ["0px", "-10px", "-25px", "-10px", "0px"],
     },
-    { duration: 1500, easing: "ease-in-out", iterations: 1 }
+    { duration: 1300, easing: "ease-in-out", iterations: 1 }
   );
 
   incrementBounceCounter();
