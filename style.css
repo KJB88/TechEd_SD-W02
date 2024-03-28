@@ -216,6 +216,7 @@ footer div {
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: space-evenly;
+
   gap: 0.15rem;
   font-size: 32px;
   width: max-content;

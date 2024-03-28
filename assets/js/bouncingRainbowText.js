@@ -1,25 +1,24 @@
-/* CONFIG */
+/* FETCH ELEMENT */
 const footerTextElement = document.getElementById("footer-text"); // Footer element that holds text
-const colors = ["red", "orange", "green", "blue", "darkblue", "purple"]; // Color array of desired colors
-
 const textOutput = footerTextElement.textContent; // Text from the footer element
 footerTextElement.textContent = ""; // Clear footer element
 
-var rainbowSpans = []; // Span cache
+/* RESOURCE ALLOC. */
+const colors = ["red", "orange", "green", "blue", "darkblue", "purple"]; // Color array of desired colors
 
+var rainbowSpans = []; // Span Array for caching Spans (to avoid constant instantiation)
 const spanObj = {
   colorCounter: 0,
   spanElement: null,
 };
-
 var bounceIndexer = 0; // Bounce indexer
 
-/* INIT. */
+/* FUNC/OBJ INIT. */
 constructTextSpans();
 
 /* HOOKS */
 setInterval(rainbowText, 100); // Rainbow randomness!
-setInterval(bounce, 130);
+setInterval(bounce, 130); // Wavey Bounce!
 
 /* FUNCS */
 /* Construct and cache Spans for use */
@@ -28,17 +27,26 @@ function constructTextSpans() {
     var element = document.createElement("span"); // Create span
 
     let newSpan = new Object(); // Create new span object
-    newSpan.spanElement = element; // Assign element to its field
-
-    // Handle overflow of colorIndex assignment
-    if (i > colors.length - 1)
-      newSpan.colorCounter = i - colors.length; // Assign color to its field
-    else newSpan.colorCounter = i;
-
-    rainbowSpans.push(newSpan); // Cache span
-
-    footerTextElement.appendChild(newSpan.spanElement); // Add span to footer div
+    populateSpan(newSpan, element, i); // Setup the Span object with its data
+    applySpan(newSpan); // Apply the Span to the DOM
   }
+}
+
+/* Span Builder to populate Span with required data */
+function populateSpan(newSpan, spanElement, loopIndex) {
+  newSpan.spanElement = spanElement; // Assign element to its field
+
+  // Handle overflow of colorIndex assignment
+  if (loopIndex > colors.length - 1)
+    newSpan.colorCounter = loopIndex - colors.length;
+  // Assign color to its field
+  else newSpan.colorCounter = loopIndex;
+}
+
+/* Cache and Interface the new Span to the DOM */
+function applySpan(newSpan) {
+  rainbowSpans.push(newSpan); // Cache span
+  footerTextElement.appendChild(newSpan.spanElement); // Add span to footer div
 }
 
 /* Apply rainbow text */
@@ -51,11 +59,17 @@ function rainbowText() {
         colors[rainbowSpans[i].colorCounter]; // Assign the color to the element
     }
 
-    decrementColorCounter(rainbowSpans[i]);
+    // Decrement current Span's colorCounter
+    rainbowSpans[i].colorCounter = stepValue(
+      rainbowSpans[i].colorCounter,
+      -1,
+      0,
+      colors.length - 1
+    );
   }
 }
 
-/* Decrement color counter of current Span - handles overflow and wraparound */
+/* Decrement ('wave' to the right) color counter of current Span - handles overflow and wraparound */
 function decrementColorCounter(currentSpan) {
   currentSpan.colorCounter--;
 
@@ -63,21 +77,37 @@ function decrementColorCounter(currentSpan) {
     currentSpan.colorCounter = colors.length - 1;
 }
 
+/* Set animation for Span denoted by bounceIndexer */
 function bounce() {
   var span = rainbowSpans[bounceIndexer].spanElement;
   span.style.position = "relative";
   span.animate(
     {
-      top: ["0px", "-10px", "-25px", "-10px", "0px"],
+      top: [
+        "0px",
+        "-1px",
+        "-3px",
+        "-5px",
+        "-10px",
+        "-15px",
+        "-20px",
+        "-22px",
+        "-24px",
+        "-25px",
+        "-24px",
+        "-22px",
+        "-20px",
+        "-15px",
+        "-10px",
+        "-5px",
+        "-3px",
+        "-1px",
+        "0px",
+      ],
     },
     { duration: 1300, easing: "ease-in-out", iterations: 1 }
   );
 
-  incrementBounceCounter();
-}
-
-function incrementBounceCounter() {
-  bounceIndexer++;
-
-  if (bounceIndexer > rainbowSpans.length - 1) bounceIndexer = 0;
+  // Increment bounce counter
+  bounceIndexer = stepValue(bounceIndexer, 1, 0, rainbowSpans.length - 1);
 }
