@@ -2,7 +2,7 @@
   <h1>:mortar_board: Tech Educators' SWD Bootcamp :mortar_board:<br/>:mortar_board: Week 02 Assessment :mortar_board:</h1>
   <p>
     <a href="http://www.LinkedIn.com/in/kevin-barr1988">LinkedIn</a> |
-    <a href="http://kjb88.github.io">Portfolio</a> |
+    <a href="http://kjb88.github.io">Website</a> |
     <a href="mailto:kevinbarr.business@gmail.com">Email</a> |
     <a href="https://github.com/KJB88">Github</a>
   </p>
