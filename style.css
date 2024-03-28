@@ -161,12 +161,13 @@ main section div h2 {
   grid-template-columns: 35% 50% 15%;
   grid-template-rows: minmax(100px, auto);
   box-sizing: border-box;
-  z-index: 1;
 
   padding: var(--grid-outer-gap);
   padding-right: 20px;
   height: 95vh;
 }
+
+/* Clicker Panel */
 .griditem-clicker {
   grid-column: 1;
   grid-row: 1 / 4;
@@ -174,6 +175,17 @@ main section div h2 {
   background-color: var(--rgba-pink-translucent);
 }
 
+/* Main Clickable Image */
+#main-clickable {
+  position: absolute;
+  width: 200px;
+  top: 35%;
+
+  cursor: pointer;
+  image-rendering: pixelated;
+}
+
+/* Menus */
 .grid-menus {
   grid-column: 2;
   grid-row: 1;
@@ -181,6 +193,7 @@ main section div h2 {
   background-color: var(--rgba-pink-translucent);
 }
 
+/* Sandbox */
 .griditem-sandbox {
   grid-column: 2;
   grid-row: 2 / 4;
@@ -188,6 +201,7 @@ main section div h2 {
   background-color: var(--rgba-pink-translucent);
 }
 
+/* Upgrades */
 .griditem-upgrades {
   grid-column: 3;
   grid-row: 1;
@@ -195,6 +209,7 @@ main section div h2 {
   background-color: var(--rgba-pink-translucent);
 }
 
+/* Products */
 .griditem-products {
   grid-column: 3;
   grid-row: 2 / 4;
