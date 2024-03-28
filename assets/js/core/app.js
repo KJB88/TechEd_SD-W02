@@ -1,5 +1,6 @@
-var kittyCount = 0;
-
+var kittyCount = 0; // Current total of kitties
+var kittiesPerSec = 0; // The rate of kitty gain
+var updateInterval = 0; // How often the UI updates
 //setInterval(kittyPerInterval, 1000);
 
 function kittyPerInterval() {
