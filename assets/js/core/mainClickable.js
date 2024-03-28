@@ -38,7 +38,6 @@ function startHoverAnimation() {
   beginHoverAnimating();
   animating = true;
   setTimeout(() => {
-    console.log("timeout");
     animating = false;
   }, hoverAnimationTimer);
 }
