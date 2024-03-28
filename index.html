@@ -4,24 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./assets/js/misc/helper.js" defer></script>
-    <script src="./assets/js/core/app.js" defer></script>
-    <script src="./assets/js/core/mainClickable.js" defer></script>
-    <script src="./assets/js/flair/bouncingRainbowText.js" defer></script>
 
-    <script type="text/html" src="./assets/libs/particles.js" defer></script>
+    <!--Particle.js wants an icon I don't have, so I'm using this to shut it up.-->
+    <link rel="shortcut icon" href="#">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./assets/libs/particles.min.js" defer></script>
+    <script src="./assets/js/helper.js" defer></script>
+    <script src="./assets/js/app.js" defer></script>
+    <script src="./assets/js/mainClickable.js" defer></script>
+    <script src="./assets/js/bouncingRainbowText.js" defer></script>
     <title>Kitty Klicker: Totally Original Game</title>
 </head>
 
 <body>
-
     <!--HEADER-->
     <header>
         <nav>
             <ul>
                 <li class="drop-shadow-2px">
-                    <h1>Kitty Klicker: Totally Original Game!</h1>
+                    <h1 class="no-pointer-events">Kitty Klicker: Totally Original Game!</h1>
                 </li>
                 <li>
                     <a href="https://github.com/KJB88/TechEd_SD-W02" class="drop-shadow-2px">Repo</a>
@@ -40,18 +42,17 @@
                 <div class="drop-shadow-2px">Reset Data</div>
             </button>
         </nav>
-
     </header>
     <!--MAIN-->
     <main>
-        <div id="particles.js"></div>
+        <div class="show" id="particles-js"></div>
 
-        <img src="./assets/img/bg/bg.jpg" class="bg">
+        <img src="./assets/img/bg.jpg" class="bg">
         <grid class="grid-wrapper">
             <!--'Clickable'-->
             <section class="griditem-clicker">
                 <div class="drop-shadow-2px">
-                    <h2>CLICKER</h2>
+                    <h2 class="no-pointer-events">CLICKER</h2>
                 </div>
                 <img src="./assets/img/icon/gismo.png" id="main-clickable" class="drop-shadow-2px">
             </section>
@@ -59,7 +60,7 @@
             <!--'Options'-->
             <section class="grid-menus">
                 <div class="drop-shadow-2px">
-                    <h2>OPTIONS</h2>
+                    <h2 class="no-pointer-events">OPTIONS</h2>
 
                 </div>
             </section>
@@ -67,21 +68,21 @@
             <!--'Sandbox'-->
             <section class="griditem-sandbox">
                 <div class="drop-shadow-2px">
-                    <h2>SANDBOX</h2>
+                    <h2 class="no-pointer-events">SANDBOX</h2>
                 </div>
             </section>
 
             <!--'Store'-->
             <section class="griditem-upgrades">
                 <div class="drop-shadow-2px">
-                    <h2>UPGRADES</h2>
+                    <h2 class="no-pointer-events">UPGRADES</h2>
                 </div>
             </section>
 
             <!-- 'Products' -->
             <section class="griditem-products">
                 <div class="drop-shadow-2px">
-                    <h2>PRODUCTS</h2>
+                    <h2 class="no-pointer-events">PRODUCTS</h2>
                 </div>
             </section>
 
@@ -90,7 +91,7 @@
     <!--FOOTER-->
     <footer>
         <!--Boucing Rainbow Text-->
-        <div class="drop-shadow-2px" id="footer-text">Kev Barr</div>
+        <div class="drop-shadow-2px no-pointer-events" id="footer-text">Kev Barr</div>
     </footer>
 </body>
 

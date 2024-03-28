@@ -2,8 +2,9 @@
 const mainClickable = document.getElementById("main-clickable");
 const happyImg = "./assets/img/icon/gismo_happy.png";
 const normalImg = "./assets/img/icon/gismo.png";
-const defaultTop = mainClickable.offsetTop;
-const defaultLeft = mainClickable.offsetLeft;
+
+const defaultTop = mainClickable.offsetTop; // Default top position for mainClickable
+const defaultLeft = mainClickable.offsetLeft; // Default left position for mainClickable
 
 /* RESOURCE ALLOC. */
 var clickImgReset = 0; // Current timer for resetting image after click
@@ -23,7 +24,7 @@ function onClick() {
   clickImgReset = setInterval(resetImage, 1000);
 }
 
-/* Reset the image after a intervval*/
+/* Reset the image after a interval */
 function resetImage() {
   clearInterval(clickImgReset); // Clear current timer
   clickImgReset = 0; // Allow setup of another timer

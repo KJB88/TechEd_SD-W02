@@ -12,10 +12,6 @@ function kittyPerInterval() {
 // TODO: Add a collection of upgrades (modifiers for 'clicks')
 // TODO: Add a collection of products (additional sources of 'clicks')
 
-particlesJS.load(
-  "particles-js",
-  "./assets/json/particles/particles.json",
-  function () {
-    console.log("callback - particles.js config loaded");
-  }
-);
+particlesJS.load("particles-js", "./assets/json/hearts.json", function () {
+  console.log("callback - particles.js config loaded");
+});
