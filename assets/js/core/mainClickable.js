@@ -8,12 +8,11 @@ const defaultLeft = mainClickable.offsetLeft;
 /* RESOURCE ALLOC. */
 var clickImgReset = 0; // Current timer for resetting image after click
 var animating = false; // Hover animation
-var hoverAnimation;
+const hoverAnimationTimer = 750;
 
 /* HOOKS */
 mainClickable.addEventListener("click", onClick); // Hook into onClick
 mainClickable.addEventListener("mouseover", startHoverAnimation); // Hook into onHover
-//mainClickable.addEventListener("mouseout", stopHoverAnimation); // Hook into mouseOut
 
 /* Respond to CLICK event */
 function onClick() {
@@ -34,26 +33,50 @@ function resetImage() {
 
 /* Begin animation by setting up timer */
 function startHoverAnimation() {
-  if (!animating) beginHoverAnimating();
-  animating = true;
-}
+  if (animating) return;
 
-function stopHoverAnimation() {
-  console.log(animating);
-  animating = false;
-  hoverAnimation.removeEventListener("animationcancel", stopHoverAnimation);
+  beginHoverAnimating();
+  animating = true;
+  setTimeout(() => {
+    console.log("timeout");
+    animating = false;
+  }, hoverAnimationTimer);
 }
 
 function beginHoverAnimating() {
-  var minY = defaultTop * -1;
-  var maxY = defaultTop * 1; // TODO - Modifier
-
-  hoverAnimation = mainClickable.animate(
+  var offsetX = -10;
+  var offsetY = -20;
+  anim = mainClickable.animate(
     {
-      top: [`${defaultTop}px`, "100px", `${defaultTop}px`],
+      left: [
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX * -1}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX * -1}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX * -1}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX * -1}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX * -1}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX}px`,
+        `${defaultLeft}px`,
+        `${defaultLeft + offsetX * -1}px`,
+      ],
+      top: [`${defaultTop}px`, `${defaultTop + offsetY}px`, `${defaultTop}px`],
     },
-    { duration: 1300, easing: "ease-in-out", iterations: 1 }
+    { duration: hoverAnimationTimer, easing: "ease-in-out", iterations: 1 }
   );
-
-  var promise = hoverAnimation.finished;
 }
