@@ -12,29 +12,33 @@
 </div>
 <section>
 <h2>Project Outline</h2>
-TODO
+Recreate the famous Cookie Clicker game. The theme can be custom, but it must have persistence of user data (using local storage), increment both actively and passively (via input and intervals). It can optionally have upgrades and items.
 </section>
 <section>
-<h2>Requirements</h2>
-<ul>
-<li>TODO</li>
-</ul>
+  <h2>Requirements</h2>
+  <ul>
+    <li><b>Persistent Sugar Level</b>: Save/Load user data from local storage.</li>
+    <li><b>Make 'em Chewy</b>: Gain cookies passively.</li>
+    <li><b>Make 'em Crispy</b>: Gain cookies by actively interacting with the webpage (ideally via clicking on a button) </li>
+  </ul>
 </section>
 <section>
-<h2>Stretch Goals</h2>
-<ul>
-<li>TODO</li>
-</ul>
+  <h2>Stretch Goals</h2>
+  <ul>
+    <li><b>Customer's Choice</b>: Have different upgrades available for purchase that modify cookies per second or cookies per click.</li>
+    <li><b>Rainbow Sprinkles</b>: Add additional styles to the webpage to make it look fancy.</li>
+    <li><b>Automated Bakery</b>: Add new upgrades that have a prerequisite on other upgrades (eg: you need a grandma for every oven, or you can't buy more ovens).</li>
+  </ul>
 </section>
 <section>
-<h2>Implementation (of Requirements)</h2>
-  TODO
-</section>
+  <h2>Implementation (of Requirements)</h2>
+    WIP
+  </section>
 <section>
   <h2>Implementation (of Stretch Goals)</h2>
-TODO
+    WIP
 </section>
 <section>
   <h2>Honorary Mentions</h2>
-TODO
+    WIP
 </section>
