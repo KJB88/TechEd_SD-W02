@@ -1,26 +1,36 @@
-/* FETCH ELEMENT */
+/* --------------------------- 
+Rainbow Text Handler
+ --------------------------- */
+/* #REGION: INIT. & VARS */
+/* Fetch DOM objects */
 const footerTextElement = document.getElementById("footer-text"); // Footer element that holds text
 const textOutput = footerTextElement.textContent; // Text from the footer element
 footerTextElement.textContent = ""; // Clear footer element
 
-/* RESOURCE ALLOC. */
+/* Colour array for rainbow text */
 const colors = ["red", "orange", "green", "blue", "darkblue", "purple"]; // Color array of desired colors
 
+/* Spans for indivdiual colouring of text */
 var rainbowSpans = []; // Span Array for caching Spans (to avoid constant instantiation)
 const spanObj = {
   colorCounter: 0,
   spanElement: null,
 };
-var bounceIndexer = 0; // Bounce indexer
+var bounceIndexer = 0; // Bounce indexer (which span gets to bounce)
 
-/* FUNC/OBJ INIT. */
 constructTextSpans();
 
-/* HOOKS */
+/* #ENDREGION: INIT. & VARS */
+/* --------------------------- */
+/* #REGION: HOOKS  */
+
 setInterval(rainbowText, 100); // Rainbow randomness!
 setInterval(bounce, 130); // Wavey Bounce!
 
-/* FUNCS */
+/* #ENDREGION: HOOKS */
+/* --------------------------- */
+/* #REGION: SPAN MANAGEMENT  */
+
 /* Construct and cache Spans for use */
 function constructTextSpans() {
   for (var i = 0; i < textOutput.length; i++) {
@@ -49,6 +59,18 @@ function applySpan(newSpan) {
   footerTextElement.appendChild(newSpan.spanElement); // Add span to footer div
 }
 
+/* Decrement ('wave' to the right) color counter of current Span - handles overflow and wraparound */
+function decrementColorCounter(currentSpan) {
+  currentSpan.colorCounter--;
+
+  if (currentSpan.colorCounter < 0)
+    currentSpan.colorCounter = colors.length - 1;
+}
+
+/* #ENDREGION: SPAN MANAGEMENT */
+/* --------------------------- */
+/* #REGION: ANIMATION  */
+
 /* Apply rainbow text */
 function rainbowText() {
   for (var i = 0; i < textOutput.length; i++) {
@@ -67,14 +89,6 @@ function rainbowText() {
       colors.length - 1
     );
   }
-}
-
-/* Decrement ('wave' to the right) color counter of current Span - handles overflow and wraparound */
-function decrementColorCounter(currentSpan) {
-  currentSpan.colorCounter--;
-
-  if (currentSpan.colorCounter < 0)
-    currentSpan.colorCounter = colors.length - 1;
 }
 
 /* Set animation for Span denoted by bounceIndexer */
@@ -111,3 +125,5 @@ function bounce() {
   // Increment bounce counter
   bounceIndexer = stepValue(bounceIndexer, 1, 0, rainbowSpans.length - 1);
 }
+/* #ENDREGION: ANIMATION  */
+/* --------------------------- */

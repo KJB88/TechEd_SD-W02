@@ -253,12 +253,14 @@ footer {
 
 footer div {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: flex-start;
-  justify-content: space-evenly;
+  flex-flow: column nowrap;
 
   gap: 0.15rem;
   font-size: 32px;
   width: max-content;
   height: min-content;
+}
+
+.footer-readout {
+  font-size: 18px;
 }

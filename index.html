@@ -13,14 +13,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@mojs/core" defer></script>
     <script src="./assets/js/particleData/heartShape.js" defer></script>
 
-    <!--Fluff-->
-    <script src="./assets/js/helper.js" defer></script>
-
-    <script src="./assets/js/bouncingRainbowText.js" defer></script>
     <!--Core-->
     <script src="./assets/js/mainClickable.js" defer></script>
     <script src="./assets/js/player.js" defer></script>
     <script src="./assets/js/app.js" defer></script>
+
+    <!--Fluff-->
+    <script src="./assets/js/helper.js" defer></script>
+    <script src="./assets/js/wordlibs.js" defer></script>
+    <script src="./assets/js/bouncingRainbowText.js" defer></script>
+    <script src="./assets/js/autosaveTimer.js" defer></script>
 
     <title>Kitty Klicker: Totally Original Game</title>
 </head>
@@ -91,8 +93,12 @@
     </main>
     <!--FOOTER-->
     <footer>
-        <!--Boucing Rainbow Text-->
-        <div class="drop-shadow-2px no-pointer-events" id="footer-text">Kev Barr</div>
+
+        <div class="drop-shadow-2px no-pointer-events">
+            <span id="footer-text">Kev Barr</span> <!--Bouncing Rainbow Text-->
+            <span id="autosave-timer" class="footer-readout">Last saved: </span> <!--Autosave notif-->
+            <span id="autosave-interval" class="footer-readout">Saved every: </span> <!--Autosave Interval notif-->
+        </div>
     </footer>
 </body>
 

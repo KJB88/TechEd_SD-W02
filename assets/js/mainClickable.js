@@ -1,4 +1,6 @@
-/* --------------------------- */
+/* --------------------------- 
+The MainClickable image for active kitty klicking.
+ --------------------------- */
 /* #REGION: INIT. & VARS */
 
 /* Fetch DOM & Assets */
