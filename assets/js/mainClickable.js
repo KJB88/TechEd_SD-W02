@@ -1,22 +1,25 @@
 /* --------------------------- */
 /* REGION: INIT. & VARS */
-/* FETCH RESOURCES */
+
+/* Fetch DOM & Assets */
 const mainClickable = document.getElementById("main-clickable");
 const happyImg = "./assets/img/icon/gismo_happy.png";
 const normalImg = "./assets/img/icon/gismo.png";
 
+/* Fetch required data from DOM objects*/
 const boundingRect = mainClickable.getBoundingClientRect();
 const defaultTop = boundingRect.top; // Default top position for mainClickable
 const defaultLeft = boundingRect.left; // Default left position for mainClickable
 const defaultWidth = boundingRect.width; // Default width for mainClickable
 const defaultHeight = boundingRect.height; // Default height for mainClickable
 
-/* RESOURCE ALLOC. */
+/* Anim & Img State Control */
 var hasClickImgReset = false; // Current timer for resetting image after click
 var isHoverAnimating = false; // Hover animation
 const imgResetTimer = 1000;
 const hoverAnimationTimer = 750;
 
+/* Define new type of Mo.js Burst animation */
 const burst = new mojs.Burst({
   radius: { 0: 200 },
   count: 6,
@@ -35,6 +38,8 @@ const burst = new mojs.Burst({
 /* ENDREGION: INIT. & VARS */
 /* --------------------------- */
 /* REGION: HOOKS & HANDLERS */
+
+/* Event Hooks */
 mainClickable.addEventListener("click", onClick); // Hook into onClick
 mainClickable.addEventListener("mouseover", startHoverAnimation); // Hook into onHover
 mainClickable.addEventListener("click", (e) => {});
@@ -54,13 +59,17 @@ function onClick() {
   if (!hasClickImgReset) return;
   handleClickImg();
 }
+
 /* ENDREGION: HOOKS & HANDLERS */
 /* --------------------------- */
 /* #REGION: CLICKABLE IMG STATE HANDLING */
+
 /* Handle Clickable Img State */
 function handleClickImg() {
   mainClickable.src = happyImg; // Update image
+
   setTimeout(resetImage, imgResetTimer); // Set timer to reset image
+
   hasClickImgReset = false; // Flip state control
 }
 
@@ -69,9 +78,11 @@ function resetImage() {
   mainClickable.src = normalImg; // Update image
   hasClickImgReset = true; // Flip state control
 }
+
 /* #ENDREGION: CLICKABLE IMG STATE HANDLING */
 /* --------------------------- */
 /* #REGION: HOVER ANIMATION HANDLING */
+
 /* Pre-animation setup by setting up timer */
 function startHoverAnimation() {
   if (isHoverAnimating) return; // State control - if animating, don't try to animate again
@@ -123,5 +134,6 @@ function playHoverAnimation() {
     { duration: hoverAnimationTimer, easing: "ease-in-out", iterations: 1 }
   );
 }
+
 /* #ENDREGION: HOVER ANIMATION HANDLING*/
 /* --------------------------- */
