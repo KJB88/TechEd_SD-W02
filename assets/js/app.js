@@ -34,8 +34,6 @@ resetDataButton.addEventListener("click", resetBtn_onClick); // Reset button onC
 
 /* LOAD Handler */
 function onLoad() {
-  clearPlayerData();
-
   setPlayerData();
 
   updateCountUI(); // Initialize count UI
