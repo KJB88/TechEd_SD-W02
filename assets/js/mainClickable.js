@@ -1,5 +1,5 @@
 /* --------------------------- */
-/* REGION: INIT. & VARS */
+/* #REGION: INIT. & VARS */
 
 /* Fetch DOM & Assets */
 const mainClickable = document.getElementById("main-clickable");
@@ -19,23 +19,23 @@ var isWiggleAnimating = false; // Hover animation
 const imgResetTimer = 500;
 const wiggleAniTimer = 750;
 
-/* ENDREGION: INIT. & VARS */
+/* #ENDREGION: INIT. & VARS */
 /* --------------------------- */
 /* REGION: HOOKS & HANDLERS */
 
 /* Event Hooks */
-mainClickable.addEventListener("click", onClick); // Hook into onClick
+mainClickable.addEventListener("click", mainClickable_onClick); // Hook into onClick
 mainClickable.addEventListener("mouseover", onHover); // Hook into onHover
 
 /* MOUSEOVER Handler */
 function onHover() {
-  if (!hasClickableImgReset) return; // Ensure that we don't run more than one timer
   handleClickImg();
 }
 
 /* ONCLICK Handler */
-function onClick() {
+function mainClickable_onClick() {
   getNewBurst(); // Get a new burst animation (to make more than one particle system output)
+  handleClickImg();
 
   if (isWiggleAnimating) return; // State control - if animating, don't try to animate again
 
@@ -48,12 +48,14 @@ function onClick() {
   }, wiggleAniTimer);
 }
 
-/* ENDREGION: HOOKS & HANDLERS */
+/* #ENDREGION: HOOKS & HANDLERS */
 /* --------------------------- */
 /* #REGION: IMG SWITCH HANDLING */
 
 /* Handle Clickable Img State */
 function handleClickImg() {
+  if (!hasClickableImgReset) return; // Ensure that we don't run more than one timer
+
   mainClickable.src = happyImg; // Update image
 
   setTimeout(resetImage, imgResetTimer); // Set timer to reset image
@@ -73,31 +75,21 @@ function resetImage() {
 
 /* Define new type of Mo.js Burst animation */
 function getNewBurst() {
-  // Rotation randomiser
-  var rotStart;
-  var decisionSeed = Math.random();
-  if (decisionSeed > 0.5) {
-    rotStart = Math.random() * 360;
-  } else {
-    rotStart = Math.random() * -360;
-  }
-
   // Create new burst
   const burst = new mojs.Burst({
-    radius: { 0: 150 },
-    count: 4,
+    radius: { 0: "rand(100, 300)" },
+    count: "rand(2, 4)",
     degree: 360,
-    degreeShift: 90,
-    rotate: { 0: rotStart },
+    rotate: { 0: "rand(-360, 360)" },
     children: {
       shape: "heart",
       speed: 1,
-      radius: 20,
-      points: 25,
+      radius: "rand(10, 25)",
+      points: 5,
       degreeShift: "rand(-45, 45)",
-      rotate: { 360: 0 },
+      rotate: { 0: "rand(-360, 360)" },
       fill: { red: "red" },
-      duration: 2000,
+      duration: "rand(1000, 3000)",
     },
   });
 

@@ -8,3 +8,11 @@ function stepValue(current, step, min, max) {
 
   return current;
 }
+
+function updateTextElement(element, text) {
+  element.textContent = text;
+}
+
+function getRandomIntFromZero(max) {
+  return Math.floor(Math.random() * max);
+}

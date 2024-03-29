@@ -167,7 +167,7 @@ main section div h2 {
   display: grid;
   gap: var(--grid-gappage);
   grid-template-columns: 35% 50% 15%;
-  grid-template-rows: minmax(100px, auto);
+  grid-template-rows: minmax(100px, 300px);
   box-sizing: border-box;
 
   padding: var(--grid-outer-gap);
@@ -178,9 +178,34 @@ main section div h2 {
 /* Clicker Panel */
 .griditem-clicker {
   grid-column: 1;
-  grid-row: 1 / 4;
+  grid-row: 1 / 3;
   border: black solid 5px;
   background-color: var(--rgba-pink-translucent);
+}
+
+.grid-wrapper h1 {
+  border: bottom solid black;
+}
+
+/* Clicker Div */
+.clicker-div {
+  height: 200px;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Dynamic Text inside Clicker Panel*/
+.clicker-active-text {
+  padding: 5px;
+  width: 500px;
+
+  border: solid 5px magenta;
+  box-sizing: border-box;
+
+  text-align: center;
 }
 
 /* Main Clickable Image */
@@ -193,18 +218,10 @@ main section div h2 {
   image-rendering: pixelated;
 }
 
-/* Menus */
-.grid-menus {
-  grid-column: 2;
-  grid-row: 1;
-  border: black solid 5px;
-  background-color: var(--rgba-pink-translucent);
-}
-
 /* Sandbox */
 .griditem-sandbox {
   grid-column: 2;
-  grid-row: 2 / 4;
+  grid-row: 1 / 3;
   border: black solid 5px;
   background-color: var(--rgba-pink-translucent);
 }
@@ -212,7 +229,7 @@ main section div h2 {
 /* Upgrades */
 .griditem-upgrades {
   grid-column: 3;
-  grid-row: 1;
+  grid-row: 0 / 1;
   border: black solid 5px;
   background-color: var(--rgba-pink-translucent);
 }
@@ -220,7 +237,7 @@ main section div h2 {
 /* Products */
 .griditem-products {
   grid-column: 3;
-  grid-row: 2 / 4;
+  grid-row: 2 / 3;
   border: black solid 5px;
   background-color: var(--rgba-pink-translucent);
 }
