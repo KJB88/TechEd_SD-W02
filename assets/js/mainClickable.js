@@ -1,3 +1,5 @@
+/* --------------------------- */
+/* REGION: INIT. & VARS */
 /* FETCH RESOURCES */
 const mainClickable = document.getElementById("main-clickable");
 const happyImg = "./assets/img/icon/gismo_happy.png";
@@ -30,15 +32,16 @@ const burst = new mojs.Burst({
   },
 });
 
-console.log(boundingRect);
-/* HOOKS */
+/* ENDREGION: INIT. & VARS */
+/* --------------------------- */
+/* REGION: HOOKS & HANDLERS */
 mainClickable.addEventListener("click", onClick); // Hook into onClick
 mainClickable.addEventListener("mouseover", startHoverAnimation); // Hook into onHover
 mainClickable.addEventListener("click", (e) => {});
 
 /* Respond to CLICK event */
 function onClick() {
-  /* Animation state independent */
+  /* Clickable state independent */
   burst // Mo.js Burst func, tweak position of animation
     .tune({
       left: defaultLeft + defaultWidth * 0.5,
@@ -46,10 +49,16 @@ function onClick() {
     })
     .replay();
 
-  /* Animation state dependent */
+  /* Clickable state dependent */
   // Ensure that we don't run more than one timer
   if (!hasClickImgReset) return;
-
+  handleClickImg();
+}
+/* ENDREGION: HOOKS & HANDLERS */
+/* --------------------------- */
+/* #REGION: CLICKABLE IMG STATE HANDLING */
+/* Handle Clickable Img State */
+function handleClickImg() {
   mainClickable.src = happyImg; // Update image
   setTimeout(resetImage, imgResetTimer); // Set timer to reset image
   hasClickImgReset = false; // Flip state control
@@ -60,7 +69,9 @@ function resetImage() {
   mainClickable.src = normalImg; // Update image
   hasClickImgReset = true; // Flip state control
 }
-
+/* #ENDREGION: CLICKABLE IMG STATE HANDLING */
+/* --------------------------- */
+/* #REGION: HOVER ANIMATION HANDLING */
 /* Pre-animation setup by setting up timer */
 function startHoverAnimation() {
   if (isHoverAnimating) return; // State control - if animating, don't try to animate again
@@ -112,3 +123,5 @@ function playHoverAnimation() {
     { duration: hoverAnimationTimer, easing: "ease-in-out", iterations: 1 }
   );
 }
+/* #ENDREGION: HOVER ANIMATION HANDLING*/
+/* --------------------------- */
