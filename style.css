@@ -228,20 +228,26 @@ main section div h2 {
 
 /* Upgrades */
 .griditem-upgrades {
+  text-wrap: nowrap;
   grid-column: 3;
   grid-row: 0 / 1;
   border: black solid 5px;
   background-color: var(--rgba-pink-translucent);
 }
 
-/* Products */
-.griditem-products {
+/* Items */
+.griditem-items {
+  text-wrap: nowrap;
   grid-column: 3;
   grid-row: 2 / 3;
   border: black solid 5px;
   background-color: var(--rgba-pink-translucent);
 }
 
+#item-store {
+  display: flex;
+  flex-flow: rows wrap;
+}
 /* FOOTER */
 footer {
   position: absolute;

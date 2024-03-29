@@ -21,6 +21,7 @@ var playerName = "";
 var kittyCount = 0; // Current total of kitties
 var kps = 1; // The rate of kitties gain
 var kpc = 1; // The rate of kitties per click
+var purchasedItems = [];
 
 /* #ENDREGION: INIT. & VARS */
 /* --------------------------- */
