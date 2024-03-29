@@ -16,9 +16,8 @@ const updateInterval = 1000; // How often passive cookies are collected
 const kittyTextSuffix = "kitties pet!"; // Suffix for text output for kitty count
 const kpsTextSuffix = "kps"; // Suffix for text output for kps count
 
-const DEBUG = false;
-
-/* Dynamic Vars*/
+/* Working Vars */
+var playerName = "";
 var kittyCount = 0; // Current total of kitties
 var kps = 1; // The rate of kitties gain
 var kpc = 1; // The rate of kitties per click
@@ -35,9 +34,10 @@ resetDataButton.addEventListener("click", resetBtn_onClick); // Reset button onC
 
 /* LOAD Handler */
 function onLoad() {
-  if (DEBUG) clearPlayerData();
+  clearPlayerData();
 
   setPlayerData();
+
   updateCountUI(); // Initialize count UI
   updateRateUI(); // Initialize rate UI
 }

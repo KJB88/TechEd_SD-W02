@@ -12,7 +12,7 @@ const ITEMS = "items";
 const UPGRADES = "upgrades";
 
 const player = {
-  playerName: "KEVIN CANT CODE",
+  playerName: "KEV CANT CODE",
   kittyCount: 0,
   kps: 1,
   items: [],
@@ -27,34 +27,24 @@ const player = {
 function setPlayerData() {
   // If local storage contains anything (it can only contain our player for this proj.)
   if (localStorage.length > 0) {
-    getPlayerDataFromStore(); // Get the player data from store
+    loadPlayerDataFromStore(); // Get the player data from store
     console.log("Loading player data from local store.");
   } else {
     console.log("Creating new player data.");
-    getNewPlayerData(); // Else, set up a new player
-    savePlayerData(); // Save the new player data
+    setDefaultPlayerData(); // Else, set up a default player
   }
 
   applyPlayerDataToGame(); // Apply the player data to the game state
-}
-
-/* Get Player Data from Local Store */
-function getPlayerDataFromStore() {
-  loadPlayerdata();
-}
-
-/* Create new player data, populate page and save */
-function getNewPlayerData() {
-  setNewPlayerName(); // Find new random name
-  setDefaultPlayerData(); // Set default values for everything else
+  savePlayerData(); // Save the new player data
 }
 
 /* Set default values for player data (excluding name) */
 function setDefaultPlayerData() {
-  player.kittyCount = 0;
-  player.kps = 1;
-  player.items = [];
-  player.upgrades = [];
+  setNewPlayerName(); // Find new random name
+  updatePlayerData(KITTYCOUNT, 0);
+  updatePlayerData(KPS, 1);
+  updatePlayerData(ITEMS, []);
+  updatePlayerData(UPGRADES, []);
 }
 
 /* Fetch resources to build player name */
@@ -65,11 +55,11 @@ function setNewPlayerName() {
   var randomNoun = nouns[getRandomIntFromZero(nouns.length)]; // Get a random Noun library
   randomNoun = capitliseFirstLetter(randomNoun); // Capitalize the first letter because we're not monsters
 
-  player.playerName = `${randomAdj} ${randomNoun}`; // Stick 'em together to make a name!
+  updatePlayerData(PLAYERNAME, `${randomAdj} ${randomNoun}`); // Stick 'em together to make a name!
 }
 
 /* Load player data from the local store */
-function loadPlayerdata() {
+function loadPlayerDataFromStore() {
   const playerData = JSON.parse(localStorage.getItem(PLAYERDATA));
 
   player.playerName = playerData.playerName;

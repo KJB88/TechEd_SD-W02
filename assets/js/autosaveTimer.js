@@ -2,17 +2,21 @@
 Autosave Timer & display
  --------------------------- */
 /* #REGION: INIT. & VARS */
+
+/* Fetch DOM objects */
 const autosaveTimerElement = document.getElementById("autosave-timer");
 const autosaveIntervalElement = document.getElementById("autosave-interval");
-const autosaveInterval = 3000;
-const autosavePrefix = "Last saved: ";
 
+const autosaveInterval = 3000; // How often the autosave happens
+
+const autosavePrefix = "Last saved: ";
 const autosaveIntervalPrefix = "Autosave interval:";
 const autosaveIntervalSuffix = "s";
 
-updateAutosaveUI();
+updateAutosaveUI(); // Update the UI immediately
 
 /* #ENDREGION: INIT. & VARS */
+/* --------------------------- */
 /* #REGION: HOOKS & HANDLERS */
 setInterval(onAutosaveInterval, autosaveInterval);
 
