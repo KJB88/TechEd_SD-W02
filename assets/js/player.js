@@ -65,8 +65,8 @@ function loadPlayerDataFromStore() {
   player.playerName = playerData.playerName;
   player.kittyCount = playerData.kittyCount;
   player.kps = playerData.kps;
-  //player.items = playerData.items;
-  //player.upgrades = playerData.upgrades;
+  player.items = playerData.items;
+  player.upgrades = playerData.upgrades;
 }
 
 /* Save player data to the local store*/
