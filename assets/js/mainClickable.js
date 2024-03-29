@@ -10,8 +10,9 @@ const defaultWidth = boundingRect.width; // Default width for mainClickable
 const defaultHeight = boundingRect.height; // Default height for mainClickable
 
 /* RESOURCE ALLOC. */
-var clickImgReset = 0; // Current timer for resetting image after click
-var animating = false; // Hover animation
+var hasClickImgReset = false; // Current timer for resetting image after click
+var isHoverAnimating = false; // Hover animation
+const imgResetTimer = 1000;
 const hoverAnimationTimer = 750;
 
 const burst = new mojs.Burst({
@@ -37,41 +38,44 @@ mainClickable.addEventListener("click", (e) => {});
 
 /* Respond to CLICK event */
 function onClick() {
-  // Ensure that we don't run more than one timer
-  if (clickImgReset !== 0) return;
-
-  console.log(defaultWidth);
-  burst
+  /* Animation state independent */
+  burst // Mo.js Burst func, tweak position of animation
     .tune({
       left: defaultLeft + defaultWidth * 0.5,
       top: defaultTop + defaultHeight * 0.5,
     })
     .replay();
 
+  /* Animation state dependent */
+  // Ensure that we don't run more than one timer
+  if (!hasClickImgReset) return;
+
   mainClickable.src = happyImg; // Update image
-  clickImgReset = setInterval(resetImage, 1000);
+  setTimeout(resetImage, imgResetTimer); // Set timer to reset image
+  hasClickImgReset = false; // Flip state control
 }
 
 /* Reset the image after a interval */
 function resetImage() {
-  clearInterval(clickImgReset); // Clear current timer
-  clickImgReset = 0; // Allow setup of another timer
-
   mainClickable.src = normalImg; // Update image
+  hasClickImgReset = true; // Flip state control
 }
 
-/* Begin animation by setting up timer */
+/* Pre-animation setup by setting up timer */
 function startHoverAnimation() {
-  if (animating) return;
+  if (isHoverAnimating) return; // State control - if animating, don't try to animate again
 
-  beginHoverAnimating();
-  animating = true;
+  playHoverAnimation(); // Play ani
+
+  // State control
+  isHoverAnimating = true;
   setTimeout(() => {
-    animating = false;
+    isHoverAnimating = false;
   }, hoverAnimationTimer);
 }
 
-function beginHoverAnimating() {
+/* Play hover animation after setup */
+function playHoverAnimation() {
   var offsetX = -10;
   var offsetY = -20;
   anim = mainClickable.animate(
