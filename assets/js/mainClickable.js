@@ -14,26 +14,10 @@ const defaultWidth = boundingRect.width; // Default width for mainClickable
 const defaultHeight = boundingRect.height; // Default height for mainClickable
 
 /* Anim & Img State Control */
-var hasClickImgReset = false; // Current timer for resetting image after click
-var isHoverAnimating = false; // Hover animation
-const imgResetTimer = 1000;
-const hoverAnimationTimer = 750;
-
-/* Define new type of Mo.js Burst animation */
-const burst = new mojs.Burst({
-  radius: { 0: 200 },
-  count: 6,
-  children: {
-    shape: "heart",
-    speed: 2,
-    radius: 20,
-    points: 25,
-    fill: { red: "red" },
-    rotate: { 0: 360 },
-    duration: 3000,
-    delay: "stagger( rand(0, 200) )",
-  },
-});
+var hasClickableImgReset = true; // Current timer for resetting image after click
+var isWiggleAnimating = false; // Hover animation
+const imgResetTimer = 500;
+const wiggleAniTimer = 750;
 
 /* ENDREGION: INIT. & VARS */
 /* --------------------------- */
@@ -41,28 +25,32 @@ const burst = new mojs.Burst({
 
 /* Event Hooks */
 mainClickable.addEventListener("click", onClick); // Hook into onClick
-mainClickable.addEventListener("mouseover", startHoverAnimation); // Hook into onHover
-mainClickable.addEventListener("click", (e) => {});
+mainClickable.addEventListener("mouseover", onHover); // Hook into onHover
 
-/* Respond to CLICK event */
-function onClick() {
-  /* Clickable state independent */
-  burst // Mo.js Burst func, tweak position of animation
-    .tune({
-      left: defaultLeft + defaultWidth * 0.5,
-      top: defaultTop + defaultHeight * 0.5,
-    })
-    .replay();
-
-  /* Clickable state dependent */
-  // Ensure that we don't run more than one timer
-  if (!hasClickImgReset) return;
+/* MOUSEOVER Handler */
+function onHover() {
+  if (!hasClickableImgReset) return; // Ensure that we don't run more than one timer
   handleClickImg();
+}
+
+/* ONCLICK Handler */
+function onClick() {
+  getNewBurst(); // Get a new burst animation (to make more than one particle system output)
+
+  if (isWiggleAnimating) return; // State control - if animating, don't try to animate again
+
+  playWiggleAni(); // Play ani
+
+  // State control
+  isWiggleAnimating = true;
+  setTimeout(() => {
+    isWiggleAnimating = false;
+  }, wiggleAniTimer);
 }
 
 /* ENDREGION: HOOKS & HANDLERS */
 /* --------------------------- */
-/* #REGION: CLICKABLE IMG STATE HANDLING */
+/* #REGION: IMG SWITCH HANDLING */
 
 /* Handle Clickable Img State */
 function handleClickImg() {
@@ -70,34 +58,64 @@ function handleClickImg() {
 
   setTimeout(resetImage, imgResetTimer); // Set timer to reset image
 
-  hasClickImgReset = false; // Flip state control
+  hasClickableImgReset = false; // Flip state control
 }
 
 /* Reset the image after a interval */
 function resetImage() {
   mainClickable.src = normalImg; // Update image
-  hasClickImgReset = true; // Flip state control
+  hasClickableImgReset = true; // Flip state control
 }
 
-/* #ENDREGION: CLICKABLE IMG STATE HANDLING */
+/* #ENDREGION: IMG SWITCH HANDLING */
 /* --------------------------- */
-/* #REGION: HOVER ANIMATION HANDLING */
+/* #REGION: ANIMATION HANDLING */
 
-/* Pre-animation setup by setting up timer */
-function startHoverAnimation() {
-  if (isHoverAnimating) return; // State control - if animating, don't try to animate again
+/* Define new type of Mo.js Burst animation */
+function getNewBurst() {
+  // Rotation randomiser
+  var rotStart;
+  var decisionSeed = Math.random();
+  if (decisionSeed > 0.5) {
+    rotStart = Math.random() * 360;
+  } else {
+    rotStart = Math.random() * -360;
+  }
 
-  playHoverAnimation(); // Play ani
+  // Create new burst
+  const burst = new mojs.Burst({
+    radius: { 0: 150 },
+    count: 4,
+    degree: 360,
+    degreeShift: 90,
+    rotate: { 0: rotStart },
+    children: {
+      shape: "heart",
+      speed: 1,
+      radius: 20,
+      points: 25,
+      degreeShift: "rand(-45, 45)",
+      rotate: { 360: 0 },
+      fill: { red: "red" },
+      duration: 2000,
+    },
+  });
 
-  // State control
-  isHoverAnimating = true;
-  setTimeout(() => {
-    isHoverAnimating = false;
-  }, hoverAnimationTimer);
+  /* Set pointer events of the burst element to none,
+  this stops click blocking */
+  burst.el.style.pointerEvents = "none";
+
+  // Mo.js Burst func, tweak position of animation
+  burst
+    .tune({
+      left: defaultLeft + defaultWidth * 0.5,
+      top: defaultTop + defaultHeight * 0.5,
+    })
+    .replay();
 }
 
-/* Play hover animation after setup */
-function playHoverAnimation() {
+/* Play wiggle animation after setup */
+function playWiggleAni() {
   var offsetX = -10;
   var offsetY = -20;
   anim = mainClickable.animate(
@@ -131,7 +149,7 @@ function playHoverAnimation() {
       ],
       top: [`${defaultTop}px`, `${defaultTop + offsetY}px`, `${defaultTop}px`],
     },
-    { duration: hoverAnimationTimer, easing: "ease-in-out", iterations: 1 }
+    { duration: wiggleAniTimer, easing: "ease-in-out", iterations: 1 }
   );
 }
 

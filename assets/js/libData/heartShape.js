@@ -18,6 +18,5 @@ const heart = new mojs.Shape({
   stroke: "darkred",
   scale: { 0: 1 },
   strokeWidth: { 50: 0 },
-  y: -20,
   duration: 1000,
 });
