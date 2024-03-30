@@ -12,7 +12,7 @@ const ITEMS = "items";
 const UPGRADES = "upgrades";
 
 const player = {
-  playerName: "KEV CANT CODE",
+  playerName: "DEFAULT",
   kittyCount: 0,
   kps: 1,
   items: [],
@@ -62,12 +62,14 @@ function generateNewPlayerName() {
 function loadPlayerDataFromStore() {
   const playerData = JSON.parse(localStorage.getItem(PLAYERDATA));
 
-  if (player.playerName == "DEFAULT") {
-    setNewPlayerName(); // Ensure that name in store is not persistently default
+  var newName;
+  if (playerData.playerName == "DEFAULT") {
+    newName = generateNewPlayerName(); // Ensure that name in store is not persistently default
   } else {
-    player.playerName = playerData.playerName;
+    newName = playerData.playerName;
   }
 
+  player.playerName = newName;
   player.kittyCount = playerData.kittyCount;
   player.kps = playerData.kps;
   player.items = playerData.items;

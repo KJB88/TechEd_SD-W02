@@ -43,10 +43,10 @@ populateItemShop();
 
 /* Update the UI with data */
 function populateItemShop() {
-  console.log("Populating!");
+  //console.log("Populating!");
   for (var i = 0; i < itemCollection.length; i++) {
     var element = document.createElement("button");
-    console.dir(element);
+    //console.dir(element);
     itemStoreElement.append(element);
   }
 }

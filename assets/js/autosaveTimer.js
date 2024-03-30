@@ -7,7 +7,7 @@ Autosave Timer & display
 const autosaveTimerElement = document.getElementById("autosave-timer");
 const autosaveIntervalElement = document.getElementById("autosave-interval");
 
-const autosaveInterval = 3000; // How often the autosave happens
+const autosaveInterval = 1000; // How often the autosave happens
 
 const autosavePrefix = "Last saved: ";
 const autosaveIntervalPrefix = "Autosave interval:";
