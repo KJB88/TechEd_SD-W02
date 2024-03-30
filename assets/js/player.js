@@ -62,7 +62,9 @@ function setNewPlayerName() {
 function loadPlayerDataFromStore() {
   const playerData = JSON.parse(localStorage.getItem(PLAYERDATA));
 
-  player.playerName = playerData.playerName;
+  if (player.playerName == "DEFAULT") setNewPlayerName();
+  else player.playerName = playerData.playerName;
+
   player.kittyCount = playerData.kittyCount;
   player.kps = playerData.kps;
   player.items = playerData.items;
