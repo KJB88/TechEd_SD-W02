@@ -26,7 +26,7 @@ const player = {
 /* Top-level player data handler */
 function setPlayerData() {
   // If local storage contains anything (it can only contain our player for this proj.)
-  if (localStorage.length > 0) {
+  if (localStorage.getItem(PLAYERDATA)) {
     loadPlayerDataFromStore(); // Get the player data from store
     console.log("Loading player data from local store.");
   } else {
