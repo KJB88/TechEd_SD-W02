@@ -40,7 +40,7 @@ function setPlayerData() {
 
 /* Set default values for player data (excluding name) */
 function setDefaultPlayerData() {
-  setNewPlayerName(); // Find new random name
+  updatePlayerData(PLAYERNAME, generateNewPlayerName()); // Find new random name
   updatePlayerData(KITTYCOUNT, 0);
   updatePlayerData(KPS, 1);
   updatePlayerData(ITEMS, []);
@@ -48,22 +48,25 @@ function setDefaultPlayerData() {
 }
 
 /* Fetch resources to build player name */
-function setNewPlayerName() {
+function generateNewPlayerName() {
   var randomAdj = adjectives[getRandomIntFromZero(adjectives.length)]; // Get a random Adjective from library
   randomAdj = capitliseFirstLetter(randomAdj); // Capitalize the first letter because we're not monsters
 
   var randomNoun = nouns[getRandomIntFromZero(nouns.length)]; // Get a random Noun library
   randomNoun = capitliseFirstLetter(randomNoun); // Capitalize the first letter because we're not monsters
 
-  updatePlayerData(PLAYERNAME, `${randomAdj} ${randomNoun}`); // Stick 'em together to make a name!
+  return `${randomAdj} ${randomNoun}`; // Stick 'em together to make a name!
 }
 
 /* Load player data from the local store */
 function loadPlayerDataFromStore() {
   const playerData = JSON.parse(localStorage.getItem(PLAYERDATA));
 
-  if (player.playerName == "DEFAULT") setNewPlayerName();
-  else player.playerName = playerData.playerName;
+  if (player.playerName == "DEFAULT") {
+    setNewPlayerName(); // Ensure that name in store is not persistently default
+  } else {
+    player.playerName = playerData.playerName;
+  }
 
   player.kittyCount = playerData.kittyCount;
   player.kps = playerData.kps;
