@@ -86,7 +86,6 @@ function loadPlayerDataFromStore() {
 /* Save player data to the local store*/
 function savePlayerData() {
   localStorage.setItem(PLAYERDATA, JSON.stringify(player));
-  console.log("Player Data saved!");
 }
 
 /* Update a specific entry within the player object */
@@ -108,6 +107,10 @@ function updateActivePlayerStats(key, val) {
 function clearPlayerData() {
   player.setDefault();
   localStorage.removeItem(PLAYERDATA);
+
+  resetRates(); // Reset rate of kitty gain
+  resetItems(); // Reset items to default prices
+  //loadPlayerUpgrades(player.items);
 
   applyPlayerDataToGame(); // Apply the player data to the game state
   console.log("Player Data cleared!");

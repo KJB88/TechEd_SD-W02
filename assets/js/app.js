@@ -19,8 +19,8 @@ const kpsSuffix = "kps";
 const separator = "---";
 const kpcSuffix = "kpc";
 
-var kps = 0;
-var kpc = 1;
+var kps = 1; // Passive - Kitties per sec
+var kpc = 1; // Active - Kitties per click
 
 // #endregion INIT. & VARS
 /* --------------------------- */
@@ -32,6 +32,7 @@ setInterval(passiveKittyGain, updateInterval); // Passive kitty petting
 mainClickable.addEventListener("click", mainClickable_onClick); // Active kitty petting
 resetDataButton.addEventListener("click", resetBtn_onClick); // Reset button onClick
 saveDataButton.addEventListener("click", saveBtn_onClick);
+
 /* LOAD Handler */
 function onLoad() {
   //clearPlayerData();
@@ -52,9 +53,14 @@ function resetBtn_onClick() {
 }
 
 function saveBtn_onClick() {
+  // TODO: DEBUG
+  player.kittyCount += 100;
+  updateCountUI();
+  /*
   toggleAutosave(false);
   savePlayerData();
   toggleAutosave(true);
+  */
 }
 // #endregion HOOKS & HANDLERS
 /* --------------------------- */
@@ -106,5 +112,9 @@ function updateRateUI() {
   );
 }
 
+function resetRates() {
+  kps = 1;
+  kpc = 1;
+}
 // #endregion COUNTING
 /* --------------------------- */

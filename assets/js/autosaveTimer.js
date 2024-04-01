@@ -7,7 +7,7 @@ Autosave Timer & display
 const autosaveTimerElement = document.getElementById("autosave-timer");
 const autosaveIntervalElement = document.getElementById("autosave-interval");
 
-const autosaveInterval = 3000; // How often the autosave happens
+const autosaveInterval = 250; // How often the autosave happens
 
 const autosavePrefix = "Last saved: ";
 const autosaveIntervalPrefix = "Autosave interval:";
@@ -20,9 +20,10 @@ var autoSaveIntervalEvent;
 // #region HOOKS & HANDLERS
 
 function toggleAutosave(toggle) {
-  if (toggle)
+  if (toggle) {
+    onAutosaveInterval();
     autoSaveIntervalEvent = setInterval(onAutosaveInterval, autosaveInterval);
-  else clearInterval(autosaveInterval);
+  } else clearInterval(autosaveInterval);
 }
 
 function onAutosaveInterval() {

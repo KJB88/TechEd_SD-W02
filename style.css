@@ -223,7 +223,7 @@ main section div h2 {
   background-color: var(--rgba-pink-translucent);
 }
 
-#item-store {
+.store-content {
   display: flex;
   flex-flow: row wrap;
 
