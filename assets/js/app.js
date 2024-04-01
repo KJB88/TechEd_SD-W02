@@ -53,14 +53,9 @@ function resetBtn_onClick() {
 }
 
 function saveBtn_onClick() {
-  // TODO: DEBUG
-  player.kittyCount += 100;
-  updateCountUI();
-  /*
   toggleAutosave(false);
   savePlayerData();
   toggleAutosave(true);
-  */
 }
 // #endregion HOOKS & HANDLERS
 /* --------------------------- */
