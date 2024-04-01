@@ -222,6 +222,13 @@ main section div h2 {
   background-color: var(--rgba-pink-translucent);
 }
 
+.sandbox-img {
+  position: absolute;
+  bottom: 35%;
+  image-rendering: pixelated;
+  width: 64px;
+  height: 64px;
+}
 /* Upgrades */
 .griditem-upgrades {
   text-wrap: nowrap;

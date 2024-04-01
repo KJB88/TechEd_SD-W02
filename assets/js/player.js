@@ -41,6 +41,7 @@ function setPlayerData() {
 
   applyPlayerDataToGame(); // Apply the player data to the game state
   savePlayerData(); // Save the new player data
+  loadCats(player.items); // Load the kitties
 
   toggleAutosave(true);
 }

@@ -15,7 +15,7 @@ class Upgrade extends StoreContent {
 
 const upgradeCollection = [
   new Upgrade("Catnip", "Kitten", 0, 1, 100),
-  new Upgrade("2nd Dinner", "Chonker", 5, 0, 1000),
+  new Upgrade("2nd Dinner", "Chonker", 5, 0, 500),
 ];
 
 const upgradeBtnCollection = []; // TODO: Weak association of button-to-item, needs refactor

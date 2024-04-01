@@ -15,9 +15,9 @@ class Item extends StoreContent {
 
 /* All available items to purchase*/
 const itemCollection = [
-  new Item("Kitten", 0, 1, 100),
-  new Item("Noodle", 0, 5, 1000),
-  new Item("Chonker", 5, 0, 2000),
+  new Item("Kitten", 0, 1, 30),
+  new Item("Noodle", 0, 3, 100),
+  new Item("Chonker", 5, 0, 500),
 ];
 
 const itemBtnCollection = []; // TODO: Weak association of button-to-item, needs refactor
@@ -74,6 +74,8 @@ function tryPurchaseItem(event) {
         itemCollection[i].name,
         itemCollection[i].currentPrice
       );
+
+      addCat();
     }
   }
 }

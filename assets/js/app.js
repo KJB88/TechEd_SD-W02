@@ -50,6 +50,7 @@ function mainClickable_onClick() {
 /* Reset Button CLICK Handler */
 function resetBtn_onClick() {
   clearPlayerData(); // Clear local store
+  clearCats();
 }
 
 function saveBtn_onClick() {

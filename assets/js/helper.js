@@ -33,3 +33,7 @@ function isNumber(value) {
   return typeof value === "number";
 }
 /* --------------------------- */
+
+function clampNumber(value, min, max) {
+  return Math.max(Math.min(value, Math.max(min, max)), Math.min(min, max));
+}
