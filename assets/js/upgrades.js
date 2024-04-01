@@ -5,10 +5,10 @@ Upgrade Handler
 const upgradeStoreElement = document.getElementById("upgrade-store");
 
 class Upgrade extends StoreContent {
-  constructor(name, itemTarget, kps, kpc, basePrice) {
+  constructor(name, itemTarget, kpc, kps, basePrice) {
     super(name, basePrice);
-    this.kps = kps;
     this.kpc = kpc;
+    this.kps = kps;
     this.itemTarget = itemTarget;
   }
 }
