@@ -74,6 +74,22 @@
                 <img src="./assets/img/icon/gismo.png" id="main-clickable" class="drop-shadow-2px">
             </section>
 
+            <!--'Info'-->
+            <section class="griditem-info">
+                <div class="drop-shadow-2px">
+                    <h2 class="no-pointer-events">INFO</h2>
+                    <ul>
+                        <li>Click the kitty to gain kitties at the rate given by KPC</li>
+                        <li>You gain kitties passively at the rate given by KPS</li>
+                        <li>Purchase 'items' to increase your KPC & KPS</li>
+                        <li>Purchase upgrades to make those 'items' gain you more kitties!</li>
+                        <li>To buy an upgrade, you have to have less items than your current upgrades for that item.
+                        </li>
+                    </ul>
+                </div>
+
+            </section>
+
             <!--'Sandbox'-->
             <section class="griditem-sandbox">
                 <div class="drop-shadow-2px">
@@ -82,22 +98,28 @@
             </section>
 
             <!--'Store'-->
+            <!-- Upgrades -->
             <section class="griditem-upgrades">
                 <div class="drop-shadow-2px">
                     <h2 class="no-pointer-events">UPGRADE STORE</h2>
-                    <div id="upgrade-store" class="store-content"></div>
+                    <div id="upgrade-store" class="store-content">
+                        <span class="tooltiptext"></span>
+                    </div>
                 </div>
             </section>
 
-            <!-- 'Products' -->
+            <!-- 'Items' -->
             <section class="griditem-items">
                 <div class="drop-shadow-2px">
                     <h2 class="no-pointer-events">ITEM STORE</h2>
-                    <div id="item-store" class="store-content"></div>
+                    <div id="item-store" class="store-content tooltip">
+                        <span class="tooltiptext"></span>
+                    </div>
                 </div>
             </section>
-
         </grid>
+
+        <div id="tooltip"><span id="tooltip-text">TOOLTIP</span></div>
     </main>
     <!--FOOTER-->
     <footer>

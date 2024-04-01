@@ -74,13 +74,11 @@ function loadPlayerDataFromStore() {
 
   dataValue = playerData.items;
   if (dataValue == undefined || dataValue.length == 0) playerData.items = [];
-  updateActivePlayerStats(ITEMS, playerData.items); // TODO
+  updateActivePlayerStats(ITEMS, playerData.items);
 
-  /*
   dataValue = playerData.upgrades;
   if (dataValue.length != undefined || dataValue.length > 0)
-    updateActivePlayerStats(UPGRADES, playerData.upgrades); // TODO
-  */
+    updateActivePlayerStats(UPGRADES, playerData.upgrades);
 }
 
 /* Save player data to the local store*/
@@ -110,7 +108,7 @@ function clearPlayerData() {
 
   resetRates(); // Reset rate of kitty gain
   resetItems(); // Reset items to default prices
-  //loadPlayerUpgrades(player.items);
+  resetUpgrades();
 
   applyPlayerDataToGame(); // Apply the player data to the game state
   console.log("Player Data cleared!");

@@ -196,10 +196,28 @@ main section div h2 {
   image-rendering: pixelated;
 }
 
+/* Info */
+.griditem-info {
+  grid-column: 2;
+  grid-row: 1;
+  border: black solid 5px;
+  background-color: var(--rgba-pink-translucent);
+}
+
+.griditem-info div {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 800px;
+  align-items: center;
+}
+
+.griditem-info ul li {
+  font-size: 18px;
+}
 /* Sandbox */
 .griditem-sandbox {
   grid-column: 2;
-  grid-row: 1 / 3;
+  grid-row: 2 / 3;
   border: black solid 5px;
   background-color: var(--rgba-pink-translucent);
 }
@@ -232,14 +250,15 @@ main section div h2 {
 }
 
 .purchase-button {
-  width: 200px;
-  height: 45px;
+  width: 250px;
+  height: 50px;
 
   border: solid var(--rgba-pink-translucent) 3px;
   box-sizing: border-box;
   background-color: pink;
 
   font-size: 18px;
+  text-wrap: wrap;
 }
 
 .purchase-button:hover {
@@ -247,14 +266,15 @@ main section div h2 {
 }
 
 .purchase-button-disabled {
-  width: 200px;
-  height: 45px;
+  width: 250px;
+  height: 50px;
 
   border: solid var(--rgba-pink-translucent) 3px;
   box-sizing: border-box;
   background-color: grey;
 
   font-size: 18px;
+  text-wrap: wrap;
 }
 /* FOOTER */
 footer {

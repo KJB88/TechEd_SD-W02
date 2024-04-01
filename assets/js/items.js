@@ -29,21 +29,24 @@ setInterval(() => {
   for (var i = 0; i < itemCollection.length; i++) {
     // Based on player wealth
     if (onCheckIfAffordable(itemCollection[i].currentPrice))
-      enableButton(itemBtnCollection[i]);
+      enableButton(itemBtnCollection[i], tryPurchaseItem);
     // Enable the button if player can afford
-    else disableButton(itemBtnCollection[i]); // Disable if player cannot afford
+    else disableButton(itemBtnCollection[i], tryPurchaseItem); // Disable if player cannot afford
   }
 }, 100);
 
+/* Update the store with data */
 function populateItemShop() {
-  //console.log("Populating!");
   for (var i = 0; i < itemCollection.length; i++) {
     createStoreElement(itemBtnCollection, itemStoreElement);
 
-    // Set button text
-    itemBtnCollection[
-      i
-    ].textContent = `${player.items[i]} : ${itemCollection[i].name} : ${itemCollection[i].currentPrice}`;
+    // Update UI
+    updateStoreUI(
+      itemBtnCollection[i],
+      player.items[i],
+      itemCollection[i].name,
+      itemCollection[i].currentPrice
+    );
   }
 }
 
@@ -65,7 +68,7 @@ function tryPurchaseItem(event) {
       updatePricing(itemCollection[i], player.items[i]);
 
       // Update Store UI to reflect the new price
-      updateItemUI(
+      updateStoreUI(
         itemBtnCollection[i],
         player.items[i],
         itemCollection[i].name,
@@ -79,16 +82,6 @@ function tryPurchaseItem(event) {
 /* --------------------------- */
 // #region PLAYER & ITEM STATE
 
-function updatePricing(item, count) {
-  if (count == 0) item.currentPrice = item.basePrice;
-  else item.currentPrice += item.basePrice * 0.5;
-}
-
-function updatePricingFromBeginning(item, count) {
-  for (var i = 0; i < count; i++) {
-    item.currentPrice += item.basePrice * 0.5;
-  }
-}
 /* Add an item to the working collection */
 function addItemToPlayer(item, index) {
   player.items[index]++;
@@ -101,28 +94,18 @@ function applyItem(item, count = 1) {
   modifyKPC(item.kpc * count);
 }
 
-/* Update Store UI buttons to reflect change in count and price */
-function updateItemUI(button, count, itemName, currentPrice) {
-  button.textContent = `${count} : ${itemName} : ${currentPrice}`;
-}
-
 function resetItems() {
   for (var i = 0; i < itemCollection.length; i++) {
-    itemCollection[i].currentPrice = itemCollection[i].basePrice;
-    updateItemUI(
-      itemBtnCollection[i],
-      0,
-      itemCollection[i].name,
-      itemCollection[i].currentPrice
-    );
+    resetContent(itemCollection[i], itemBtnCollection[i]);
   }
 }
+
 /* Load player items into the game state and caches */
 function loadPlayerItems(items) {
   for (var i = 0; i < items.length; i++) {
     updatePricingFromBeginning(itemCollection[i], items[i]);
     applyItem(itemCollection[i], items[i]);
-    updateItemUI(
+    updateStoreUI(
       itemBtnCollection[i],
       items[i],
       itemCollection[i].name,
@@ -132,5 +115,11 @@ function loadPlayerItems(items) {
     player.items[i] = items[i];
   }
 }
-// #endreghion PLAYER & ITEM STATE
+
+function getItemIndexByName(targetName) {
+  for (var i = 0; i < itemCollection.length; i++) {
+    if (itemCollection[i].name == targetName) return i;
+  }
+}
+// #endregion PLAYER & ITEM STATE
 /* --------------------------- */
