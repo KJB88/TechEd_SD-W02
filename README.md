@@ -12,22 +12,26 @@
 </div>
 <section>
 <h2>Project Outline</h2>
+<p>
+  
 Recreate the famous Cookie Clicker game. The theme can be custom, but it must have persistence of user data (using local storage), increment both actively and passively (via input and intervals). It can optionally have upgrades and items.
+</p>
+  <b>All requirements and stretch goals were achieved. No specific difficulties.</b>
 </section>
 <section>
   <h2>Requirements</h2>
   <ul>
-    <li><b>Persistent Sugar Level</b>: Save/Load user data from local storage.</li>
-    <li><b>Make 'em Chewy</b>: Gain cookies passively.</li>
-    <li><b>Make 'em Crispy</b>: Gain cookies by actively interacting with the webpage (ideally via clicking on a button) </li>
+    <li><b>Persistent Sugar Level</b>: Save/Load user data from local storage - <b>COMPLETE</b></li>
+    <li><b>Make 'em Chewy</b>: Gain cookies passively - <b>COMPLETE</b></li>
+    <li><b>Make 'em Crispy</b>: Gain cookies by actively interacting with the webpage (ideally via clicking on a button) - <b>COMPLETE</b></li>
   </ul>
 </section>
 <section>
   <h2>Stretch Goals</h2>
   <ul>
-    <li><b>Customer's Choice</b>: Have different upgrades available for purchase that modify cookies per second or cookies per click.</li>
-    <li><b>Rainbow Sprinkles</b>: Add additional styles to the webpage to make it look fancy.</li>
-    <li><b>Automated Bakery</b>: Add new upgrades that have a prerequisite on other upgrades (eg: you need a grandma for every oven, or you can't buy more ovens).</li>
+    <li><b>Customer's Choice</b>: Have different upgrades available for purchase that modify cookies per second or cookies per click - <b>COMPLETE</b></li>
+    <li><b>Rainbow Sprinkles</b>: Add additional styles to the webpage to make it look fancy - <b>COMPLETE</b></li>
+    <li><b>Automated Bakery</b>: Add new upgrades that have a prerequisite on other upgrades (eg: you need a grandma for every oven, or you can't buy more ovens) - <b>COMPLETE</b></li>
   </ul>
 </section>
 <section>
