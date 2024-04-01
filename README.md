@@ -56,5 +56,6 @@ Recreate the famous Cookie Clicker game. The theme can be custom, but it must ha
     <li><b>Happy Vibrations</b>: The happy kitty creates love hearts when you click him! They have random direction, sizing, and a bunch of other attributes.</li>
     <li><b>RNG: The Risky Name Generator</b>: A randomised new name for the player is generated every new user data (so first time, on data clear, on invalid name, etc) from two separate lists; adjectives and nouns. Which create a name following the structure of "ADJECTIVE NOUN". </li>
     <li><b>Fluffy Library</b>: I encapsulated common behaviour and data used by both Items and Upgrades into a separate storeCommon.js to be used by both.</li>
+    <li><b>Super Caticality</b>: For every Item you buy, a new kitty shows up in your sandbox!</li>
   </ul>
 </section>
