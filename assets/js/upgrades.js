@@ -1,8 +1,6 @@
 /* --------------------------- 
 Upgrade Handler
 --------------------------- */
-const upgradeCollection = [];
-
 class Upgrade {
   constructor(upgradeName, upgradeModsItem, upgradePrice) {
     this.upgradeName = upgradeName;
@@ -10,3 +8,7 @@ class Upgrade {
     this.upgradePrice = upgradePrice;
   }
 }
+
+const upgradeCollection = [];
+
+function loadPlayerUpgrades() {}

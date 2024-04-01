@@ -1,7 +1,8 @@
 /* --------------------------- 
 Rainbow Text Handler
  --------------------------- */
-/* #REGION: INIT. & VARS */
+// #region INIT. & VARS
+
 /* Fetch DOM objects */
 const footerTextElement = document.getElementById("footer-text"); // Footer element that holds text
 const textOutput = footerTextElement.textContent; // Text from the footer element
@@ -20,16 +21,16 @@ var bounceIndexer = 0; // Bounce indexer (which span gets to bounce)
 
 constructTextSpans();
 
-/* #ENDREGION: INIT. & VARS */
+// #endregion INIT. & VARS */
 /* --------------------------- */
-/* #REGION: HOOKS  */
+// #region HOOKS  */
 
 setInterval(rainbowText, 100); // Rainbow randomness!
 setInterval(bounce, 130); // Wavey Bounce!
 
-/* #ENDREGION: HOOKS */
+// #endregion HOOKS
 /* --------------------------- */
-/* #REGION: SPAN MANAGEMENT  */
+// #region SPAN MANAGEMENT
 
 /* Construct and cache Spans for use */
 function constructTextSpans() {
@@ -67,9 +68,9 @@ function decrementColorCounter(currentSpan) {
     currentSpan.colorCounter = colors.length - 1;
 }
 
-/* #ENDREGION: SPAN MANAGEMENT */
+// #endregion SPAN MANAGEMENT
 /* --------------------------- */
-/* #REGION: ANIMATION  */
+// #region ANIMATION
 
 /* Apply rainbow text */
 function rainbowText() {
@@ -125,5 +126,5 @@ function bounce() {
   // Increment bounce counter
   bounceIndexer = stepValue(bounceIndexer, 1, 0, rainbowSpans.length - 1);
 }
-/* #ENDREGION: ANIMATION  */
+// #endregion ANIMATION  */
 /* --------------------------- */

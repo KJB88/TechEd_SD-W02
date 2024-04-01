@@ -1,33 +1,38 @@
 /* --------------------------- 
 Autosave Timer & display
  --------------------------- */
-/* #REGION: INIT. & VARS */
+// #region INIT. & VARS
 
 /* Fetch DOM objects */
 const autosaveTimerElement = document.getElementById("autosave-timer");
 const autosaveIntervalElement = document.getElementById("autosave-interval");
 
-const autosaveInterval = 1000; // How often the autosave happens
+const autosaveInterval = 3000; // How often the autosave happens
 
 const autosavePrefix = "Last saved: ";
 const autosaveIntervalPrefix = "Autosave interval:";
 const autosaveIntervalSuffix = "s";
 
-updateAutosaveUI(); // Update the UI immediately
+var autoSaveIntervalEvent;
 
-/* #ENDREGION: INIT. & VARS */
+// #endregion INIT. & VARS
 /* --------------------------- */
-/* #REGION: HOOKS & HANDLERS */
-setInterval(onAutosaveInterval, autosaveInterval);
+// #region HOOKS & HANDLERS
+
+function toggleAutosave(toggle) {
+  if (toggle)
+    autoSaveIntervalEvent = setInterval(onAutosaveInterval, autosaveInterval);
+  else clearInterval(autosaveInterval);
+}
 
 function onAutosaveInterval() {
   savePlayerData(); // Save the player data
 
   updateAutosaveUI();
 }
-/* #ENDREGION: HOOKS & HANDLERS */
+// #endregion HOOKS & HANDLERS
 /* --------------------------- */
-/* #REGION: UI HANDLING  */
+// #region UI HANDLING
 function updateAutosaveUI() {
   const time = new Date().toLocaleTimeString();
 
@@ -39,5 +44,5 @@ function updateAutosaveUI() {
     }${autosaveIntervalSuffix}`
   );
 }
-/* #ENDREGION: UI HANDLING  */
+// #endregion UI HANDLING
 /* --------------------------- */

@@ -43,24 +43,6 @@ body {
 .show {
   visibility: visible;
 }
-
-/* Debug area to show positioning of elements - not used for prod */
-.debug-bg-yellow {
-  background-color: yellow;
-}
-.debug-bg-red {
-  background-color: darkred;
-}
-.debug-bg-green {
-  background-color: lightgreen;
-}
-.debug-bg-blue {
-  background-color: lightblue;
-}
-.debug-bg-teal {
-  background-color: teal;
-}
-
 /* HEADER */
 
 header {
@@ -78,19 +60,15 @@ header h1 {
   height: min-content;
 }
 
-#reset-data-btn {
+.header-data-btn {
   width: 100px;
   height: 25px;
-
+  color: var(--text-color);
   margin-right: 5px;
   border-radius: 0;
   background-color: var(--rgba-pink-translucent);
 
   text-wrap: nowrap;
-}
-
-header button div {
-  color: var(--text-color);
 }
 
 /* Nav */
@@ -238,6 +216,7 @@ main section div h2 {
 /* Items */
 .griditem-items {
   text-wrap: nowrap;
+  text-align: center;
   grid-column: 3;
   grid-row: 2 / 3;
   border: black solid 5px;
@@ -246,7 +225,36 @@ main section div h2 {
 
 #item-store {
   display: flex;
-  flex-flow: rows wrap;
+  flex-flow: row wrap;
+
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.purchase-button {
+  width: 200px;
+  height: 45px;
+
+  border: solid var(--rgba-pink-translucent) 3px;
+  box-sizing: border-box;
+  background-color: pink;
+
+  font-size: 18px;
+}
+
+.purchase-button:hover {
+  background-color: magenta;
+}
+
+.purchase-button-disabled {
+  width: 200px;
+  height: 45px;
+
+  border: solid var(--rgba-pink-translucent) 3px;
+  box-sizing: border-box;
+  background-color: grey;
+
+  font-size: 18px;
 }
 /* FOOTER */
 footer {

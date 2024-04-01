@@ -1,50 +1,48 @@
 /* --------------------------- 
 Player & PlayerData Handling
  --------------------------- */
-/* #REGION: INIT. & VARS */
+// #region INIT. & VARS
 
 /* Pre-defined to limit input errors */
 const PLAYERDATA = "playerData";
-const PLAYERNAME = "playerName";
-const KITTYCOUNT = "kittyCount";
-const KPS = "kps";
+const NAME = "playerName";
+const COUNT = "kittyCount";
 const ITEMS = "items";
 const UPGRADES = "upgrades";
 
 const player = {
   playerName: "DEFAULT",
   kittyCount: 0,
-  kps: 1,
-  items: [],
-  upgrades: [],
+  items: [0, 0, 0],
+  upgrades: [0, 0],
+
+  setDefault: function () {
+    this.playerName = generateNewPlayerName();
+    this.kittyCount = 0;
+    this.items = [0, 0, 0];
+    this.upgrades = [0, 0];
+  },
 };
 
-/* #ENDREGION: INIT. & VARS */
+// #endregion INIT. & VARS
 /* --------------------------- */
-/* #REGION: PLAYER DATA HANDLING*/
+// #region PLAYER DATA HANDLING
 
 /* Top-level player data handler */
 function setPlayerData() {
   // If local storage contains anything (it can only contain our player for this proj.)
   if (localStorage.getItem(PLAYERDATA)) {
-    loadPlayerDataFromStore(); // Get the player data from store
     console.log("Loading player data from local store.");
+    loadPlayerDataFromStore(); // Get the player data from store
   } else {
     console.log("Creating new player data.");
-    setDefaultPlayerData(); // Else, set up a default player
+    player.setDefault(); // Else, set up a default player
   }
 
   applyPlayerDataToGame(); // Apply the player data to the game state
   savePlayerData(); // Save the new player data
-}
 
-/* Set default values for player data (excluding name) */
-function setDefaultPlayerData() {
-  updatePlayerData(PLAYERNAME, generateNewPlayerName()); // Find new random name
-  updatePlayerData(KITTYCOUNT, 0);
-  updatePlayerData(KPS, 1);
-  updatePlayerData(ITEMS, []);
-  updatePlayerData(UPGRADES, []);
+  toggleAutosave(true);
 }
 
 /* Fetch resources to build player name */
@@ -61,59 +59,66 @@ function generateNewPlayerName() {
 /* Load player data from the local store */
 function loadPlayerDataFromStore() {
   const playerData = JSON.parse(localStorage.getItem(PLAYERDATA));
+  var dataValue;
 
-  var newName;
-  if (playerData.playerName == "DEFAULT") {
-    newName = generateNewPlayerName(); // Ensure that name in store is not persistently default
-  } else {
-    newName = playerData.playerName;
-  }
+  dataValue = playerData.playerName;
+  // Sanity check
+  if (dataValue === "DEFAULT" || dataValue === undefined)
+    dataValue = generateNewPlayerName();
+  updateActivePlayerStats(NAME, dataValue);
 
-  player.playerName = newName;
-  player.kittyCount = playerData.kittyCount;
-  player.kps = playerData.kps;
-  player.items = playerData.items;
-  player.upgrades = playerData.upgrades;
+  dataValue = playerData.kittyCount;
+  // Sanity check
+  if (!isNumber(dataValue) || dataValue < 0) dataValue = 0;
+  updateActivePlayerStats(COUNT, dataValue);
+
+  dataValue = playerData.items;
+  if (dataValue == undefined || dataValue.length == 0) playerData.items = [];
+  updateActivePlayerStats(ITEMS, playerData.items); // TODO
+
+  /*
+  dataValue = playerData.upgrades;
+  if (dataValue.length != undefined || dataValue.length > 0)
+    updateActivePlayerStats(UPGRADES, playerData.upgrades); // TODO
+  */
 }
 
 /* Save player data to the local store*/
 function savePlayerData() {
-  updateAllPlayerData();
   localStorage.setItem(PLAYERDATA, JSON.stringify(player));
-
   console.log("Player Data saved!");
 }
 
 /* Update a specific entry within the player object */
-function updatePlayerData(key, val) {
-  player[key] = val;
-}
-
-function updateAllPlayerData() {
-  updatePlayerData(PLAYERNAME, playerNameElement.textContent);
-  updatePlayerData(KITTYCOUNT, kittyCount);
-  updatePlayerData(KPS, kps);
-  //updatePlayerData(ITEMS, items);
-  //updatePlayerData(UPGRADES, upgrades);
+function updateActivePlayerStats(key, val) {
+  switch (key) {
+    case ITEMS:
+      loadPlayerItems(val); // Load Items
+      break;
+    case UPGRADES:
+      loadPlayerUpgrades(val); // Load Upgrades
+      break;
+    default:
+      player[key] = val; // Load everything else
+      break;
+  }
 }
 
 /* Clear player data from the local store */
 function clearPlayerData() {
+  player.setDefault();
   localStorage.removeItem(PLAYERDATA);
 
+  applyPlayerDataToGame(); // Apply the player data to the game state
   console.log("Player Data cleared!");
 }
 
 /* Apply the player data to the current game state */
 function applyPlayerDataToGame() {
   updateTextElement(playerNameElement, player.playerName);
-
-  kittyCount = player.kittyCount;
   updateCountUI();
-
-  kps = player.kps;
   updateRateUI();
 }
 
-/* #ENDREGION: PLAYER DATA */
+// #endregion PLAYER DATA
 /* --------------------------- */

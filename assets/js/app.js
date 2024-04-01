@@ -1,7 +1,7 @@
 /* --------------------------- 
 The Core functionality for the application.
  --------------------------- */
-/* REGION: INIT. & VARS */
+// region INIT. & VARS
 
 /* Fetch DOM objects */
 const kittyCounterElement = document.getElementById("kitty-counter");
@@ -9,32 +9,32 @@ const kpsCounterElement = document.getElementById("kps-counter");
 const playerNameElement = document.getElementById("player-name");
 
 const resetDataButton = document.getElementById("reset-data-btn");
+const saveDataButton = document.getElementById("save-data-btn");
 
 /* Const Vars*/
 const updateInterval = 1000; // How often passive cookies are collected
 
-const kittyTextSuffix = "kitties pet!"; // Suffix for text output for kitty count
-const kpsTextSuffix = "kps"; // Suffix for text output for kps count
+const countSuffix = "kitties pet!"; // Suffix for text output for kitty count
+const kpsSuffix = "kps";
+const separator = "---";
+const kpcSuffix = "kpc";
 
-/* Working Vars */
-var playerName = "";
-var kittyCount = 0; // Current total of kitties
-var kps = 1; // The rate of kitties gain
-var kpc = 1; // The rate of kitties per click
-var purchasedItems = [];
+var kps = 0;
+var kpc = 1;
 
-/* #ENDREGION: INIT. & VARS */
+// #endregion INIT. & VARS
 /* --------------------------- */
-/* #REGION: HOOKS & HANDLERS */
+// #region HOOKS & HANDLERS
 
 addEventListener("load", onLoad); // When page is loaded
 
 setInterval(passiveKittyGain, updateInterval); // Passive kitty petting
 mainClickable.addEventListener("click", mainClickable_onClick); // Active kitty petting
 resetDataButton.addEventListener("click", resetBtn_onClick); // Reset button onClick
-
+saveDataButton.addEventListener("click", saveBtn_onClick);
 /* LOAD Handler */
 function onLoad() {
+  //clearPlayerData();
   setPlayerData();
 
   updateCountUI(); // Initialize count UI
@@ -49,37 +49,62 @@ function mainClickable_onClick() {
 /* Reset Button CLICK Handler */
 function resetBtn_onClick() {
   clearPlayerData(); // Clear local store
-  location.reload(); // Reload page
 }
 
-/* #ENDREGION: HOOKS & HANDLERS */
+function saveBtn_onClick() {
+  toggleAutosave(false);
+  savePlayerData();
+  toggleAutosave(true);
+}
+// #endregion HOOKS & HANDLERS
 /* --------------------------- */
-/* #REGION: COUNTING */
+// #region COUNTING
+
+function modifyKittyCount(value) {
+  player.kittyCount += value;
+
+  // Sanity Check
+  if (player.kittyCount < 0) {
+    player.kittyCount = 0;
+  }
+
+  updateCountUI();
+}
+
+function modifyKPS(value) {
+  kps += value;
+
+  updateRateUI();
+}
+
+function modifyKPC(value) {
+  kpc += value;
+
+  updateRateUI();
+}
 
 function activeKittyGain() {
-  kittyCount += kpc;
+  player.kittyCount += kpc;
   updateCountUI();
-
-  updatePlayerData(KITTYCOUNT, kittyCount);
 }
 
 /* Passive gain */
 function passiveKittyGain() {
-  kittyCount += kps;
+  player.kittyCount += kps;
   updateCountUI();
 }
-
 /* Update the Count UI with count*/
 function updateCountUI() {
-  updateTextElement(kittyCounterElement, `${kittyCount} ${kittyTextSuffix}`);
+  updateTextElement(kittyCounterElement, `${player.kittyCount} ${countSuffix}`);
 }
 
 /* Update the Rate UI with count*/
 function updateRateUI() {
-  updateTextElement(kpsCounterElement, `${kps} ${kpsTextSuffix}`);
+  updateTextElement(
+    kpsCounterElement,
+    `${kps} ${kpsSuffix} --- ${kpc} ${kpcSuffix}`
+  );
 }
 
-/* #ENDREGION: COUNTING */
+// #endregion COUNTING
 /* --------------------------- */
-// TODO: Add a collection of upgrades (modifiers for 'clicks')
-// TODO: Add a collection of products (additional sources of 'clicks')

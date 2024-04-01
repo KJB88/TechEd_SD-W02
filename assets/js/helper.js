@@ -28,4 +28,8 @@ function capitliseFirstLetter(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+/* Is the value a number? */
+function isNumber(value) {
+  return typeof value === "number";
+}
 /* --------------------------- */

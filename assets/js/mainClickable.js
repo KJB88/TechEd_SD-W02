@@ -1,7 +1,7 @@
 /* --------------------------- 
 The MainClickable image for active kitty klicking.
  --------------------------- */
-/* #REGION: INIT. & VARS */
+// #region INIT. & VARS
 
 /* Fetch DOM & Assets */
 const mainClickable = document.getElementById("main-clickable");
@@ -21,9 +21,9 @@ var isWiggleAnimating = false; // Hover animation
 const imgResetTimer = 500;
 const wiggleAniTimer = 750;
 
-/* #ENDREGION: INIT. & VARS */
+// #endregion: INIT. & VARS
 /* --------------------------- */
-/* REGION: HOOKS & HANDLERS */
+// #region: HOOKS & HANDLERS
 
 /* Event Hooks */
 mainClickable.addEventListener("click", mainClickable_onClick); // Hook into onClick
@@ -50,9 +50,9 @@ function mainClickable_onClick() {
   }, wiggleAniTimer);
 }
 
-/* #ENDREGION: HOOKS & HANDLERS */
+// #endregion HOOKS & HANDLERS
 /* --------------------------- */
-/* #REGION: IMG SWITCH HANDLING */
+// #region IMG SWITCH HANDLING
 
 /* Handle Clickable Img State */
 function handleClickImg() {
@@ -71,9 +71,9 @@ function resetImage() {
   hasClickableImgReset = true; // Flip state control
 }
 
-/* #ENDREGION: IMG SWITCH HANDLING */
+// #endregion IMG SWITCH HANDLING
 /* --------------------------- */
-/* #REGION: ANIMATION HANDLING */
+// #region ANIMATION HANDLING
 
 /* Define new type of Mo.js Burst animation */
 function getNewBurst() {
@@ -147,5 +147,5 @@ function playWiggleAni() {
   );
 }
 
-/* #ENDREGION: HOVER ANIMATION HANDLING*/
+// #endregion HOVER ANIMATION HANDLING
 /* --------------------------- */
